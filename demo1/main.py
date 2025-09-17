@@ -19,11 +19,15 @@ class PDFCrew:
         self.summary_cache = None  # ✅ 缓存摘要
         self.analysis_cache = None  # ✅ 缓存批判 & 创新
 
+        # ✅ 启动时清空 progress.md
+        with open(self.memory_file, "w", encoding="utf-8") as f:
+            f.write("")
+
         # 初始化 LLM
         self.llm1 = LLM(
-            base_url="https://api.deepseek.com",
+            base_url="https://api.chatanywhere.tech",
             api_key=OPENAI_API_KEY ,
-            model="openai/gpt-oss-20b",
+            model="openai/gpt-4.1",
             temperature=0.3,
             timeout=120,
             max_retries=3
@@ -32,7 +36,7 @@ class PDFCrew:
         self.llm2 = LLM(
             base_url="https://api.chatanywhere.tech",
             api_key=OPENAI_API_KEY,
-            model="openai/gpt-4.1-nano",
+            model="openai/gpt-4.1-mini",
             temperature=0.3,
             timeout=120,
             max_retries=3
@@ -174,7 +178,7 @@ class PDFCrew:
 
     def analyze_pdf(self, file_path: str, user_question: str = None):
         # 先确保 PDF 已处理
-        self.preprocess_pdf(file_path)
+        # self.preprocess_pdf(file_path)
 
         memory = self.load_memory()
 
