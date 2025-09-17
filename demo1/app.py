@@ -10,8 +10,8 @@ if "messages" not in st.session_state:
 
 pdf_crew = st.session_state.crew
 
-st.set_page_config(page_title="PDF 智能体助手", layout="wide")
-st.title("PDF 智能体助手")
+st.set_page_config(page_title="文献助手", layout="wide")
+st.title("文献助手")
 
 # === 文件上传 ===
 uploaded_file = st.file_uploader("上传 PDF 文件", type=["pdf"])
